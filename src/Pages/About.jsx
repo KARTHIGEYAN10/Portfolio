@@ -2,7 +2,7 @@ import React from 'react'
 import karthigeyanimg from "../assets/portfolioimg.png"
 const About = () => {
   return (
-    <div className="min-h-screen w-full flex items-center px-10">
+    <div className="min-h-screen w-full flex items-center px-10" id='about'>
             {/* writing part */}
             <div className="w-1/2 flex flex-col gap-5">
                 <p className="text-[#6f2dbd] font-semibold text-xl">
