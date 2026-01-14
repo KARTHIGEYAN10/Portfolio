@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div className="min-h-screen w-full flex items-center px-10" id='about'>
             {/* writing part */}
-            <div className="w-1/2 flex flex-col gap-5">
+            <div className="w-full md:w-1/2 flex flex-col gap-5">
                 <p className="text-[#6f2dbd] font-semibold text-xl">
                     Hey there, my name is
                 </p>
@@ -28,8 +28,9 @@ const About = () => {
               </div>
     
               {/* image part */}
-              <div className="w-1/2 flex justify-center">
-                <img
+              <div className="md:w-1/2 hidden md:block">
+                <div className='flex justify-center'>
+                  <img
                   src={karthigeyanimg}
                   alt="Karthigeyan"
                   className="
@@ -40,6 +41,7 @@ const About = () => {
                     cursor-pointer
                   "
                 />
+                </div>
               </div>
   
     </div>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import blackimg from "../assets/Black_colour.jpg"
 import html from "../assets/html.png"
 import css from "../assets/css.png"
@@ -8,11 +8,24 @@ import express from "../assets/express.png"
 import tailwind from "../assets/tailwindcss.png"
 import spring from "../assets/springboot.png"
 const DevelopmentFramework = () => {
-    const itemVisible=6
         const itemWidth=170
         const [curindex,setCurIndex]=useState(0)
+        const [itemVisible,setItemsVisible]=useState(1)
         const languageList=[{name:"ReactJs",img:reactjs},{name:"NodeJs",img:nodejs},{name:"ExpressJs",img:express},{name:"SpringBoot",img:spring},{name:"Tailwindcss",img:tailwind},{name:"Html",img:html},{name:"Css",img:css}]
-        const maxIndex=languageList.length-itemVisible
+        useEffect(()=>{
+            const updatefn=()=>{
+                if(window.innerWidth >= 1024) setItemsVisible(4);
+                else if(window.innerWidth >= 768) setItemsVisible(3);
+                else if(window.innerWidth >= 640) setItemsVisible(2);
+                else setItemsVisible(1);
+            }
+            updatefn();
+            window.addEventListener("resize",updatefn);
+            return ()=>{
+                window.removeEventListener("resize",updatefn);
+            }
+        },[])
+        const maxIndex=Math.max(languageList.length-itemVisible,0)
         const previndex=(val)=>{
             if(val != 0){
                 setCurIndex(val-1);
@@ -27,17 +40,17 @@ const DevelopmentFramework = () => {
         }
   return (
     <div>
-            <p className='text-2xl font-semibold mb-5'>DEVELOPMENT FRAMEWORK KNOWN</p>
-            <div className='flex flex-row w-full mx-auto'>
+            <p className='text-2xl font-semibold mt-4 mb-5 text-center md:text-left'>DEVELOPMENT FRAMEWORK KNOWN</p>
+            <div className='flex justify-center items-center w-full'>
                 {/* left */}
                 {curindex > 0 ? (
                 <div className='w-[10%] flex justify-center items-center'>
-                    <span className='text-center hover:bg-slate-500 rounded-full p-6 cursor-pointer'
-                    onClick={()=>previndex(curindex)}>&#129032;</span>
+                    <span className='text-center hover:bg-slate-500 rounded-full p-3 cursor-pointer'
+                    onClick={()=>previndex(curindex)}>&#129128;</span>
                 </div>
                 ) : (
                 <div className='w-[10%] flex justify-center items-center'>
-                    <span className='hidden text-center hover:bg-slate-500 rounded-full p-6 cursor-pointer'
+                    <span className='hidden text-center hover:bg-slate-500 rounded-full p-3 cursor-pointer'
                     onClick={()=>previndex(curindex)}>&#129032;</span>
                 </div>
                 )}
@@ -56,12 +69,12 @@ const DevelopmentFramework = () => {
                 {/* right */}
                 {(curindex != maxIndex && languageList.length > itemVisible) ? (
                 <div className='w-[10%] flex justify-center items-center'>
-                    <span className='text-center hover:bg-slate-500 rounded-full p-6 cursor-pointer'
-                    onClick={()=>nextindex(curindex)}>&#129034;</span>
+                    <span className='text-center hover:bg-slate-500 rounded-full p-3 cursor-pointer'
+                    onClick={()=>nextindex(curindex)}>&#129130;</span>
                 </div>
                 ) : (
                 <div className='w-[10%] flex justify-center items-center'>
-                    <span className='hidden text-center hover:bg-slate-500 rounded-full p-6 cursor-pointer'
+                    <span className='hidden text-center hover:bg-slate-500 rounded-full p-3 cursor-pointer'
                     onClick={()=>nextindex(curindex)}>&#129034;</span>
                 </div>
                 )}

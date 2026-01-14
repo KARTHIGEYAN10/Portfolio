@@ -8,7 +8,7 @@ const Skill = () => {
   return (
     <div className='min-h-screen w-full' id='skills'>
       {/* Programming Lang */}
-      <div>
+      <div className=''>
         <ProgrammingLanguage />
       </div>
       {/* Web Development */}
